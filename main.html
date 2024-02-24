@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fortune Teller</title>
+<style>
+    body {
+        font-family: 'Old Standard TT', serif;
+        background-image: url('https://th.bing.com/th/id/OIG2._cYq6B7reyL0ij8IppqQ?w=1024&h=1024&rs=1&pid=ImgDetMain');
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    #btn-ask {
+        background-color: #f4d204;
+        color: #000;
+        padding: 20px 40px;
+        font-size: 24px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<button id="btn-ask">Ask a Question</button>
+
+<script>
+    const answers = [
+        { text: "It is certain", speech: "A confident affirmation that the outcome is definite.", meaning: "Confident and definite." },
+        { text: "It is decidedly so", speech: "A strong confirmation of the expected result.", meaning: "Strong confirmation." },
+        { text: "Without a doubt", speech: "Assurance that there’s no room for uncertainty.", meaning: "Assurance of certainty." },
+        { text: "Yes, definitely", speech: "A resounding yes!", meaning: "Resounding yes." },
+        { text: "You may rely on it", speech: "Trustworthy guidance.", meaning: "Trustworthy." },
+        { text: "As I see it, yes", speech: "An optimistic perspective.", meaning: "Optimistic." },
+        { text: "Most likely", speech: "The odds are in your favor.", meaning: "Favorable odds." },
+        { text: "Outlook good", speech: "A positive forecast.", meaning: "Positive outlook." },
+        { text: "Reply hazy, try again", speech: "The answer lies in the cosmic fog; ask again later.", meaning: "Uncertain, try again later." },
+        { text: "Ask again later", speech: "The universe needs a moment to align its energies.", meaning: "Requires time to align." },
+        { text: "Cannot predict now", speech: "The mystical forces remain elusive.", meaning: "Elusive prediction." },
+        { text: "Don't count on it", speech: "A gentle warning against misplaced hopes.", meaning: "Cautionary." },
+        { text: "My reply is no", speech: "A firm negative response.", meaning: "Firm negative." },
+        { text: "Very doubtful", speech: "The stars cast doubt upon your query.", meaning: "Highly doubtful." }
+    ];
+
+    const btnAsk = document.getElementById('btn-ask');
+    const speechSynthesis = window.speechSynthesis;
+
+    btnAsk.addEventListener('click', function() {
+        const randomIndex = Math.floor(Math.random() * answers.length);
+        const answer = answers[randomIndex];
+        speak(answer.text);
+        alert(`${answer.text}: ${answer.speech}\n\nMeaning: ${answer.meaning}`);
+    });
+
+    function speak(text) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        speechSynthesis.speak(utterance);
+    }
+</script>
+
+</body>
+</html>
